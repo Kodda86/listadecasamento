@@ -24,7 +24,7 @@
             position: fixed;
             z-index: 0;
             inset: 0;
-            background: url(' https://www.svgbackgrounds.com/wp-content/uploads/2020/03/floral-art-2.svg ') repeat;
+            background: url('https://www.svgbackgrounds.com/wp-content/uploads/2020/03/floral-art-2.svg') repeat;
             background-size: 550px 400px;
             opacity: 0.08;
             pointer-events: none;
@@ -214,28 +214,22 @@
             .header h1 {
                 font-size: 2.1rem;
             }
-            
             .header h2 {
                 font-size: 1.0rem;
             }
-            
             .date {
                 font-size: 0.9rem;
             }
-            
             .photo-section img {
                 width: 120px;
                 height: 120px;
             }
-            
             .countdown-item span {
                 font-size: 1.1rem;
             }
-            
             .countdown-item small {
                 font-size: 0.55rem;
             }
-            
             .gift-btn svg {
                 width: 16px;
                 height: 16px;
@@ -254,11 +248,10 @@
             
             <div class="photo-section">
                 <span class="photo-frame">
-                    <img src="https://koddanet.wordpress.com/wp-content/uploads/2025/07/jee-1.jpg " alt="Juliana e Eduardo">
+                    <img src="https://koddanet.wordpress.com/wp-content/uploads/2025/07/jee-1.jpg" alt="Juliana e Eduardo">
                 </span>
             </div>
 
-            <!-- Cronômetro de contagem regressiva -->
             <div class="countdown-container">
                 <div class="countdown-title">Faltam</div>
                 <div id="countdown" class="countdown">
@@ -288,21 +281,17 @@
             
             <div class="list-title">Acesse nossa lista em sua loja favorita:</div>
             <div class="gift-list">
-                <a class="gift-btn" href="https://www.precolandia.com.br/gift-list-details/view/duda-e-ju " target="_blank">
-                    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
-                    Preçolândia
+                <a class="gift-btn" href="https://www.precolandia.com.br/gift-list-details/view/duda-e-ju" target="_blank">
+                    🎁 Preçolândia
                 </a>
-                <a class="gift-btn" href="https://www.zelo.com.br/lista-de-desejo/lista-de-casamento/produtos/a5aa81db-073a-426c-8a8f-76e2d3a7a08b " target="_blank">
-                    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
-                    Zelo
+                <a class="gift-btn" href="https://www.zelo.com.br/lista-de-desejo/lista-de-casamento/produtos/a5aa81db-073a-426c-8a8f-76e2d3a7a08b" target="_blank">
+                    🎁 Zelo
                 </a>
-                <a class="gift-btn" href="https://listas.casasbahia.com.br/EDUARDOEJULIANA " target="_blank">
-                    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
-                    Casas Bahia
+                <a class="gift-btn" href="https://listas.casasbahia.com.br/EDUARDOEJULIANA" target="_blank">
+                    🎁 Casas Bahia
                 </a>
-                <a class="gift-btn" href="https://www.querodecasamento.com.br/lista-de-casamento/EduardoDudaeJuliana " target="_blank">
-                    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
-                    Quero de Casamento
+                <a class="gift-btn" href="https://www.querodecasamento.com.br/lista-de-casamento/EduardoDudaeJuliana" target="_blank">
+                    🎁 Quero de Casamento
                 </a>
             </div>
             
@@ -336,7 +325,6 @@
             document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
         }
 
-        // Atualiza o cronômetro imediatamente e depois a cada segundo
         updateCountdown();
         setInterval(updateCountdown, 1000);
     </script>
