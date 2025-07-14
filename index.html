@@ -6,8 +6,143 @@
   <title>Lista de Casamento | Juliana & Eduardo</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* (ESTILOS MANTIDOS — abreviado aqui para clareza) */
-    /* ... todo o seu estilo original continua igual ... */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: #f9faf7;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      z-index: 0;
+      inset: 0;
+      background: url('https://www.svgbackgrounds.com/wp-content/uploads/2020/03/floral-art-2.svg') repeat;
+      background-size: 550px 400px;
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.97);
+      border-radius: 22px;
+      box-shadow: 0 6px 48px #a5b59423, 0 1.5px 0.5px #ece5d9;
+      border: 1.5px solid #e2dec9;
+      width: 100%;
+      max-width: 460px;
+      padding: 2rem 1.5rem;
+      margin: 1rem;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.4rem;
+      color: #67824d;
+      margin-bottom: 0.3rem;
+    }
+
+    .header h2 {
+      font-size: 1.1rem;
+      color: #8c7c4f;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .date {
+      color: #a09875;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .photo-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .photo-frame {
+      background: #f6f7f4;
+      padding: 0.5rem;
+      border-radius: 50%;
+      border: 2.5px solid #c7c1a1;
+      box-shadow: 0 0 0 12px #e6e3d86e, 0 4px 16px #b5c9a229;
+      display: inline-block;
+    }
+
+    .photo-section img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .countdown-container {
+      margin-bottom: 1.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .countdown-title {
+      font-size: 1rem;
+      color: #708950;
+      margin-bottom: 0.7rem;
+      font-weight: 600;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .countdown-item {
+      text-align: center;
+      background: #f7f8f3e6;
+      padding: 0.6rem 0.8rem;
+      border-radius: 6px;
+      border-left: 3px solid #a0b088;
+      min-width: 40px;
+      flex: 1 1 40px;
+    }
+
+    .countdown-item span {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #67824d;
+      display: block;
+    }
+
+    .countdown-item small {
+      font-size: 0.6rem;
+      color: #8c7c4f;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-box {
+      background: #f7f8f3e6;
+      border-left: 4px solid #a0b088;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      font-size: 0.95rem;
+      margin: 1rem 0;
+    }
+
+    .list-title {
+      font-size: 1.1rem;
+      color: #708950;
+      margin: 1.5rem 0 1rem;
+      font-weight: 600;
+    }
 
     .gift-btn {
       display: flex;
@@ -28,6 +163,7 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      margin-bottom: 0.6rem;
     }
 
     .gift-btn:hover {
@@ -36,10 +172,19 @@
       border-color: #b5b261;
     }
 
+    .footer {
+      margin-top: 1.5rem;
+      color: #8c7c4f;
+      font-size: 0.95rem;
+      letter-spacing: 0.18px;
+    }
+
+    /* Modal */
     #modal-rsvp {
       display: none;
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
       background: rgba(0,0,0,0.6);
@@ -137,7 +282,7 @@
     </div>
   </div>
 
-  <!-- Modal com formulário do Google Forms -->
+  <!-- Modal com Google Forms -->
   <div id="modal-rsvp">
     <div>
       <button class="close-btn" onclick="closeRsvpModal()">×</button>
@@ -148,22 +293,22 @@
   </div>
 
   <script>
-    // Atualização do cronômetro
     const weddingDate = new Date('October 4, 2025 15:00:00').getTime();
+
     function updateCountdown() {
       const now = new Date().getTime();
       const distance = weddingDate - now;
+
+      if (distance < 0) {
+        document.getElementById('countdown').innerHTML = '<div style="text-align:center; padding:10px; color:#67824d; font-weight:600;">O casamento começou!</div>';
+        clearInterval(interval);
+        return;
+      }
+
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      if (distance < 0) {
-        document.getElementById('countdown').innerHTML =
-          '<div style="text-align:center; padding:10px; color:#67824d; font-weight:600;">O casamento começou!</div>';
-        clearInterval(interval);
-        return;
-      }
 
       document.getElementById('days').textContent = String(days).padStart(2, '0');
       document.getElementById('hours').textContent = String(hours).padStart(2, '0');
@@ -174,10 +319,10 @@
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
 
-    // Controle do modal
     function openRsvpModal() {
       document.getElementById("modal-rsvp").style.display = "flex";
     }
+
     function closeRsvpModal() {
       document.getElementById("modal-rsvp").style.display = "none";
     }
