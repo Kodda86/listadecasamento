@@ -6,18 +6,26 @@
   <title>Lista de Casamento | Juliana & Eduardo</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { 
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    body {
+    html, body {
+      height: 100%;
       font-family: 'Cormorant Garamond', serif;
       background: #f9faf7;
       color: #333;
+      overflow-x: hidden;
+    }
+
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      padding: 1rem;
       position: relative;
-      overflow-x: hidden;
     }
 
     body::before {
@@ -25,10 +33,16 @@
       position: fixed;
       z-index: 0;
       inset: 0;
-      background: url('https://www.svgbackgrounds.com/wp-content/uploads/2020/03/floral-art-2.svg') repeat;
+      background: url(' https://www.svgbackgrounds.com/wp-content/uploads/2020/03/floral-art-2.svg ') repeat;
       background-size: 550px 400px;
       opacity: 0.08;
       pointer-events: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
     }
 
     .card {
@@ -36,11 +50,9 @@
       border-radius: 22px;
       box-shadow: 0 6px 48px #a5b59423, 0 1.5px 0.5px #ece5d9;
       border: 1.5px solid #e2dec9;
-      width: 100%;
-      max-width: 460px;
       padding: 2rem 1.5rem;
-      margin: 1rem;
       text-align: center;
+      position: relative;
       z-index: 1;
     }
 
@@ -75,6 +87,7 @@
       border: 2.5px solid #c7c1a1;
       box-shadow: 0 0 0 12px #e6e3d86e, 0 4px 16px #b5c9a229;
       display: inline-block;
+      transition: transform 0.3s ease;
     }
 
     .photo-section img {
@@ -83,6 +96,15 @@
       object-fit: cover;
       border-radius: 50%;
       display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .photo-section:hover .photo-frame {
+      transform: scale(1.05);
+    }
+
+    .photo-section:hover img {
+      transform: scale(1.05);
     }
 
     .countdown-container {
@@ -100,7 +122,7 @@
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 0.8rem;
       flex-wrap: wrap;
     }
 
@@ -112,6 +134,11 @@
       border-left: 3px solid #a0b088;
       min-width: 40px;
       flex: 1 1 40px;
+      transition: transform 0.2s ease;
+    }
+
+    .countdown-item:hover {
+      transform: translateY(-2px);
     }
 
     .countdown-item span {
@@ -144,33 +171,36 @@
       font-weight: 600;
     }
 
-    .gift-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.7rem;
-      background: linear-gradient(90deg, #a6c899 0%, #eae8d7 100%);
-      color: #41572a;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: 1.05rem;
-      padding: 0.8rem 0;
-      border: 1px solid #d1cdbe;
-      border-radius: 6px;
-      text-decoration: none;
-      box-shadow: 0 2px 13px #e1e8d7;
-      transition: filter 0.13s, box-shadow 0.17s;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      margin-bottom: 0.6rem;
-    }
+   .gift-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    background: linear-gradient(90deg, #a6c899 0%, #eae8d7 100%);
+    color: #41572a;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.8rem 1.5rem; /* Ajuste aqui */
+    border: 1px solid #d1cdbe;
+    border-radius: 6px;
+    text-decoration: none;
+    box-shadow: 0 2px 13px #e1e8d7;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 0.6rem;
+    height: 48px; /* Tamanho fixo para alinhar */
+    line-height: 1.2; /* Ajuste de linha */
+  }
 
-    .gift-btn:hover {
-      filter: brightness(1.07);
-      box-shadow: 0 6px 22px #bacd9bb7;
-      border-color: #b5b261;
-    }
+  /* Força o mesmo estilo para o botão RSVP */
+  .gift-btn[type="button"], button.gift-btn {
+    padding: 0.8rem 1.5rem;
+    height: 48px;
+    line-height: 1.2;
+  }
 
     .footer {
       margin-top: 1.5rem;
@@ -234,51 +264,80 @@
       flex: 1;
       border: none;
     }
+
+    @media (max-width: 600px) {
+      .photo-section img {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .countdown-item span {
+        font-size: 1.1rem;
+      }
+      
+      .countdown-item small {
+        font-size: 0.55rem;
+      }
+      
+      .header h1 {
+        font-size: 2.1rem;
+      }
+      
+      .header h2 {
+        font-size: 1.0rem;
+      }
+      
+      .date {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="header">
-      <h1>Juliana & Eduardo</h1>
-      <h2>Nosso casamento</h2>
-      <div class="date">04 de Outubro de 2025</div>
-    </div>
-
-    <div class="photo-section">
-      <span class="photo-frame">
-        <img src="https://koddanet.wordpress.com/wp-content/uploads/2025/07/jee-1.jpg" alt="Juliana e Eduardo">
-      </span>
-    </div>
-
-    <div class="countdown-container">
-      <div class="countdown-title">Faltam</div>
-      <div id="countdown" class="countdown">
-        <div class="countdown-item"><span id="days">00</span><small>Dias</small></div>
-        <div class="countdown-item"><span id="hours">00</span><small>Horas</small></div>
-        <div class="countdown-item"><span id="minutes">00</span><small>Minutos</small></div>
-        <div class="countdown-item"><span id="seconds">00</span><small>Segundos</small></div>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <h1>Juliana & Eduardo</h1>
+        <h2>Nosso casamento</h2>
+        <div class="date">04 de Outubro de 2025</div>
       </div>
-    </div>
 
-    <div class="info-box">
-      Com muita alegria, convidamos você para fazer parte deste momento tão especial em nossas vidas.<br><br>
-      Caso queira nos presentear, deixamos aqui as opções das listas de casamento nas lojas parceiras.
-    </div>
+      <div class="photo-section">
+        <span class="photo-frame">
+          <img src="https://koddanet.wordpress.com/wp-content/uploads/2025/07/jee-1.jpg " alt="Juliana e Eduardo">
+        </span>
+      </div>
 
-    <div class="list-title">Confirme sua presença:</div>
-    <button class="gift-btn" onclick="openRsvpModal()">✅ Confirmar Presença</button>
+      <div class="countdown-container">
+        <div class="countdown-title">Faltam</div>
+        <div id="countdown" class="countdown">
+          <div class="countdown-item"><span id="days">00</span><small>Dias</small></div>
+          <div class="countdown-item"><span id="hours">00</span><small>Horas</small></div>
+          <div class="countdown-item"><span id="minutes">00</span><small>Minutos</small></div>
+          <div class="countdown-item"><span id="seconds">00</span><small>Segundos</small></div>
+        </div>
+      </div>
 
-    <div class="list-title">Acesse nossa lista em sua loja favorita:</div>
-    <div class="gift-list">
-      <a class="gift-btn" href="https://www.precolandia.com.br/gift-list-details/view/duda-e-ju" target="_blank">Preçolândia</a>
-      <a class="gift-btn" href="https://www.zelo.com.br/lista-de-desejo/lista-de-casamento/produtos/a5aa81db-073a-426c-8a8f-76e2d3a7a08b" target="_blank">Zelo</a>
-      <a class="gift-btn" href="https://listas.casasbahia.com.br/EDUARDOEJULIANA" target="_blank">Casas Bahia</a>
-      <a class="gift-btn" href="https://www.querodecasamento.com.br/lista-de-casamento/EduardoDudaeJuliana" target="_blank">Quero de Casamento</a>
-    </div>
+      <div class="info-box">
+        Com muita alegria, convidamos você para fazer parte deste momento tão especial em nossas vidas.<br><br>
+        Caso queira nos presentear, deixamos aqui as opções das listas de casamento nas lojas parceiras.
+      </div>
 
-    <div class="footer">
-      Obrigado por fazer parte da nossa história!<br>
-      Juliana & Eduardo
+      <div class="list-title">Confirme sua presença:</div>
+      <button class="gift-btn" onclick="openRsvpModal()">✅ Confirmar Presença</button>
+
+      <div class="list-title">Acesse nossa lista em sua loja favorita:</div>
+      <div class="gift-list">
+        <a class="gift-btn" href="https://www.precolandia.com.br/gift-list-details/view/duda-e-ju " target="_blank">Preçolândia</a>
+        <a class="gift-btn" href="#" onclick="handleExternalLink('Zelo')">Zelo</a>
+        <a class="gift-btn" href="#" onclick="handleExternalLink('Casas Bahia')">Casas Bahia</a>
+        <a class="gift-btn" href="https://www.querodecasamento.com.br/lista-de-casamento/EduardoDudaeJuliana " target="_blank">Quero de Casamento</a>
+      </div>
+
+      <div class="footer">
+        Obrigado por fazer parte da nossa história!<br>
+        Juliana & Eduardo
+      </div>
     </div>
   </div>
 
@@ -325,6 +384,10 @@
 
     function closeRsvpModal() {
       document.getElementById("modal-rsvp").style.display = "none";
+    }
+
+    function handleExternalLink(storeName) {
+      alert(`Desculpe, o link para ${storeName} está temporariamente indisponível. Por favor, tente novamente mais tarde ou entre em contato conosco para obter mais informações.`);
     }
   </script>
 </body>
