@@ -171,36 +171,33 @@
       font-weight: 600;
     }
 
-   .gift-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.7rem;
-    background: linear-gradient(90deg, #a6c899 0%, #eae8d7 100%);
-    color: #41572a;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: 1.05rem;
-    padding: 0.8rem 1.5rem; /* Ajuste aqui */
-    border: 1px solid #d1cdbe;
-    border-radius: 6px;
-    text-decoration: none;
-    box-shadow: 0 2px 13px #e1e8d7;
-    transition: all 0.2s ease;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    margin-bottom: 0.6rem;
-    height: 48px; /* Tamanho fixo para alinhar */
-    line-height: 1.2; /* Ajuste de linha */
-  }
+    .gift-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      background: linear-gradient(90deg, #a6c899 0%, #eae8d7 100%);
+      color: #41572a;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: 0.8rem 0;
+      border: 1px solid #d1cdbe;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 13px #e1e8d7;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      margin-bottom: 0.6rem;
+    }
 
-  /* Força o mesmo estilo para o botão RSVP */
-  .gift-btn[type="button"], button.gift-btn {
-    padding: 0.8rem 1.5rem;
-    height: 48px;
-    line-height: 1.2;
-  }
+    .gift-btn:hover {
+      filter: brightness(1.07);
+      box-shadow: 0 6px 22px #bacd9bb7;
+      border-color: #b5b261;
+    }
 
     .footer {
       margin-top: 1.5rem;
@@ -325,7 +322,7 @@
 
       <div class="list-title">Confirme sua presença:</div>
       <button class="gift-btn" onclick="openRsvpModal()">✅ Confirmar Presença</button>
-      </div>
+
       <div class="list-title">Acesse nossa lista em sua loja favorita:</div>
       <div class="gift-list">
         <a class="gift-btn" href="https://www.precolandia.com.br/gift-list-details/view/duda-e-ju " target="_blank">Preçolândia</a>
