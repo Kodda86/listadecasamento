@@ -2,21 +2,27 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Casamento | Juliana & Eduardo</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Reset básico */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        html, body {
-            height: 100%;
+        body {
             font-family: 'Cormorant Garamond', serif;
             background: #f9faf7;
             color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -24,21 +30,10 @@
             position: fixed;
             z-index: 0;
             inset: 0;
-            background: url(' https://www.svgbackgrounds.com/wp-content/uploads/2020/03/floral-art-2.svg ') repeat;
+            background: url('https://www.svgbackgrounds.com/wp-content/uploads/2020/03/floral-art-2.svg') repeat;
             background-size: 550px 400px;
             opacity: 0.08;
             pointer-events: none;
-        }
-
-        .container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem 1rem;
-            z-index: 1;
-            position: relative;
         }
 
         .card {
@@ -51,10 +46,7 @@
             padding: 2rem 1.5rem;
             margin: 1rem;
             text-align: center;
-        }
-
-        .header {
-            margin-bottom: 1.5rem;
+            z-index: 1; /* Para ficar acima do background */
         }
 
         .header h1 {
@@ -78,9 +70,6 @@
         }
 
         .photo-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             margin-bottom: 1.5rem;
         }
 
@@ -98,9 +87,6 @@
             height: 150px;
             object-fit: cover;
             border-radius: 50%;
-            border: none;
-            box-shadow: 0 2px 8px #adc89a45;
-            background: #e3e7d8;
             display: block;
         }
 
@@ -165,12 +151,6 @@
             font-weight: 600;
         }
 
-        .gift-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
         .gift-btn {
             display: flex;
             align-items: center;
@@ -189,6 +169,7 @@
             transition: filter 0.13s, box-shadow 0.17s;
             position: relative;
             overflow: hidden;
+            cursor: pointer; /* Adicionado para botões */
         }
 
         .gift-btn:hover {
@@ -210,7 +191,7 @@
             letter-spacing: 0.18px;
         }
 
-        /* Estilos para o Modal */
+        /* Estilos do Modal */
         #modal-rsvp {
             display: none; /* Inicia oculto */
             position: fixed;
@@ -218,12 +199,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.4); /* Fundo semi-transparente */
-            backdrop-filter: blur(2px);
+            background: rgba(0,0,0,0.6); /* Fundo semi-transparente */
+            backdrop-filter: blur(3px);
             z-index: 9999;
             justify-content: center;
             align-items: center;
-            animation: fadeIn 0.3s ease-out; /* Adiciona animação de entrada */
+            animation: fadeIn 0.3s ease-out;
         }
 
         #modal-rsvp > div {
@@ -232,20 +213,25 @@
             border-radius: 12px;
             width: 90%;
             max-width: 400px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             position: relative;
-            animation: slideIn 0.3s ease-out; /* Adiciona animação de entrada */
+            animation: slideIn 0.3s ease-out;
         }
 
-        #modal-rsvp button[onclick="fecharModal()"] {
+        #modal-rsvp button.close-btn {
             position: absolute;
-            top: 10px;
+            top: 12px;
             right: 15px;
             background: none;
             border: none;
-            font-size: 20px;
+            font-size: 24px;
             cursor: pointer;
-            color: #888;
+            color: #aaa;
+            transition: color 0.2s;
+        }
+
+        #modal-rsvp button.close-btn:hover {
+            color: #555;
         }
 
         #modal-rsvp h3 {
@@ -254,6 +240,7 @@
             color: #67824d;
             font-family: 'Cormorant Garamond', serif;
             font-weight: 600;
+            font-size: 1.6rem;
         }
 
         #modal-rsvp form {
@@ -264,44 +251,57 @@
 
         #modal-rsvp form input,
         #modal-rsvp form select {
-            padding: 0.8rem;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            padding: 0.9rem;
+            border: 1px solid #d1d1d1;
+            border-radius: 8px;
             font-size: 1rem;
             font-family: 'Cormorant Garamond', serif;
             color: #333;
+            background-color: #fcfcfc;
         }
 
         #modal-rsvp form input::placeholder {
-            color: #999;
+            color: #a0a0a0;
         }
 
         #modal-rsvp form button[type="submit"] {
             background:#a6c899;
-            padding:0.8rem;
+            padding:0.9rem;
             border:none;
-            border-radius:6px;
+            border-radius:8px;
             cursor:pointer;
             color: #fff;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            margin-top: 0.5rem;
-            transition: background 0.2s ease;
+            margin-top: 1rem;
+            transition: background 0.2s ease, transform 0.1s ease;
         }
 
         #modal-rsvp form button[type="submit"]:hover {
             background: #8fae72;
+            transform: translateY(-1px);
         }
 
-        #status {
+        #status-message {
             text-align: center;
             margin-top: 1rem;
-            padding: 0.5rem;
-            border-radius: 4px;
-            background-color: #e6ffe6; /* Leve verde para sucesso */
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            display: none; /* Inicia oculto */
+            transition: all 0.3s ease-in-out;
+        }
+
+        #status-message.success {
+            background-color: #e6ffe6;
             color: #4CAF50;
             border: 1px solid #c2ecc2;
-            display: none; /* Inicia oculto, será exibido via JS */
+        }
+
+        #status-message.error {
+            background-color: #ffe6e6;
+            color: #F44336;
+            border: 1px solid #ecc2c2;
         }
 
         /* Animações */
@@ -311,130 +311,129 @@
         }
 
         @keyframes slideIn {
-            from { transform: translateY(-30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from { transform: translateY(-50px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
 
+        /* Media Queries */
         @media (max-width: 600px) {
-            .header h1 {
-                font-size: 2.1rem;
-            }
-            
-            .header h2 {
-                font-size: 1.0rem;
-            }
-            
-            .date {
-                font-size: 0.9rem;
-            }
-            
-            .photo-section img {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .countdown-item span {
-                font-size: 1.1rem;
-            }
-            
-            .countdown-item small {
-                font-size: 0.55rem;
-            }
-            
-            .gift-btn svg {
-                width: 16px;
-                height: 16px;
-            }
+            .header h1 { font-size: 2.1rem; }
+            .header h2 { font-size: 1.0rem; }
+            .date { font-size: 0.9rem; }
+            .photo-section img { width: 120px; height: 120px; }
+            .countdown-item span { font-size: 1.1rem; }
+            .countdown-item small { font-size: 0.55rem; }
+            .gift-btn svg { width: 16px; height: 16px; }
+            #modal-rsvp > div { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="header">
-                <h1>Juliana & Eduardo</h1>
-                <h2>Nosso casamento</h2>
-                <div class="date">04 de Outubro de 2025</div>
-            </div>
-            
-            <div class="photo-section">
-                <span class="photo-frame">
-                    <img src="https://koddanet.wordpress.com/wp-content/uploads/2025/07/jee-1.jpg " alt="Juliana e Eduardo">
-                </span>
-            </div>
+    <div class="card">
+        <div class="header">
+            <h1>Juliana & Eduardo</h1>
+            <h2>Nosso casamento</h2>
+            <div class="date">04 de Outubro de 2025</div>
+        </div>
+        
+        <div class="photo-section">
+            <span class="photo-frame">
+                <img src="https://koddanet.wordpress.com/wp-content/uploads/2025/07/jee-1.jpg" alt="Juliana e Eduardo">
+            </span>
+        </div>
 
-            <div class="countdown-container">
-                <div class="countdown-title">Faltam</div>
-                <div id="countdown" class="countdown">
-                    <div class="countdown-item">
-                        <span id="days">00</span>
-                        <small>Dias</small>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="hours">00</span>
-                        <small>Horas</small>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="minutes">00</span>
-                        <small>Minutos</small>
-                    </div>
-                    <div class="countdown-item">
-                        <span id="seconds">00</span>
-                        <small>Segundos</small>
-                    </div>
+        <div class="countdown-container">
+            <div class="countdown-title">Faltam</div>
+            <div id="countdown" class="countdown">
+                <div class="countdown-item">
+                    <span id="days">00</span>
+                    <small>Dias</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">00</span>
+                    <small>Horas</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">00</span>
+                    <small>Minutos</small>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">00</span>
+                    <small>Segundos</small>
                 </div>
             </div>
+        </div>
 
-            <div class="info-box">
-                Com muita alegria, convidamos você para fazer parte deste momento tão especial em nossas vidas.<br><br>
-                Caso queira nos presentear, deixamos aqui as opções das listas de casamento nas lojas parceiras.
-            </div>
-            <div class="list-title">Confirme sua presença:</div>
-            <button class="gift-btn" onclick="abrirModal()">✅ Confirmar Presença</button>
+        <div class="info-box">
+            Com muita alegria, convidamos você para fazer parte deste momento tão especial em nossas vidas.<br><br>
+            Caso queira nos presentear, deixamos aqui as opções das listas de casamento nas lojas parceiras.
+        </div>
+        <div class="list-title">Confirme sua presença:</div>
+        <button class="gift-btn" onclick="openRsvpModal()">✅ Confirmar Presença</button>
 
-            <div class="list-title">Acesse nossa lista em sua loja favorita:</div>
-            <div class="gift-list">
-                <a class="gift-btn" href="https://www.precolandia.com.br/gift-list-details/view/duda-e-ju " target="_blank">
-                    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
-                    Preçolândia
-                </a>
-                <a class="gift-btn" href="https://www.zelo.com.br/lista-de-desejo/lista-de-casamento/produtos/a5aa81db-073a-426c-8a8f-76e2d3a7a08b " target="_blank">
-                    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
-                    Zelo
-                </a>
-                <a class="gift-btn" href="https://listas.casasbahia.com.br/EDUARDOEJULIANA " target="_blank">
-                    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
-                    Casas Bahia
-                </a>
-                <a class="gift-btn" href="https://www.querodecasamento.com.br/lista-de-casamento/EduardoDudaeJuliana " target="_blank">
-                    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
-                    Quero de Casamento
-                </a>
-            </div>
-            
-            <div class="footer">
-                Obrigado por fazer parte da nossa história!<br>
-                Juliana & Eduardo
-            </div>
+        <div class="list-title">Acesse nossa lista em sua loja favorita:</div>
+        <div class="gift-list">
+            <a class="gift-btn" href="https://www.precolandia.com.br/gift-list-details/view/duda-e-ju" target="_blank">
+                <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
+                Preçolândia
+            </a>
+            <a class="gift-btn" href="https://www.zelo.com.br/lista-de-desejo/lista-de-casamento/produtos/a5aa81db-073a-426c-8a8f-76e2d3a7a08b" target="_blank">
+                <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
+                Zelo
+            </a>
+            <a class="gift-btn" href="https://listas.casasbahia.com.br/EDUARDOEJULIANA" target="_blank">
+                <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
+                Casas Bahia
+            </a>
+            <a class="gift-btn" href="https://www.querodecasamento.com.br/lista-de-casamento/EduardoDudaeJuliana" target="_blank">
+                <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#ede7c2"/><path d="M10 14v-2.5A4.5 4.5 0 0119 11.5V14m0 0H10m9 0H9m0 0V11.5A4.5 4.5 0 0018 11.5V14" stroke="#7b9064" stroke-width="2"/></svg>
+                Quero de Casamento
+            </a>
+        </div>
+        
+        <div class="footer">
+            Obrigado por fazer parte da nossa história!<br>
+            Juliana & Eduardo
         </div>
     </div>
 
+    <div id="modal-rsvp">
+      <div>
+        <button class="close-btn" onclick="closeRsvpModal()">×</button>
+        <h3>Confirme sua presença</h3>
+        <form id="rsvp-form">
+          <select name="confirmaPresenca" required>
+            <option value="">Você confirma presença?</option>
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+          </select>
+          <input type="text" name="nome" placeholder="Nome completo" required>
+          <input type="email" name="email" placeholder="E-mail" required>
+          <input type="number" name="quantidadePessoas" placeholder="Número de pessoas" min="1" required>
+          <button type="submit">Enviar</button>
+          <div id="status-message"></div>
+        </form>
+      </div>
+    </div>
+
     <script>
+        // Data do casamento
+        const weddingDate = new Date('October 4, 2025 15:00:00').getTime();
+
         function updateCountdown() {
-            const weddingDate = new Date('October 4, 2025 15:00:00').getTime();
             const now = new Date().getTime();
             const distance = weddingDate - now;
-
-            if (distance < 0) {
-                document.getElementById('countdown').innerHTML = 
-                    '<div style="text-align:center; padding:10px; color:#67824d; font-weight:600;">O casamento começou!</div>';
-                return;
-            }
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '<div style="text-align:center; padding:10px; color:#67824d; font-weight:600;">O casamento começou!</div>';
+                clearInterval(countdownInterval); // Para a contagem
+                return;
+            }
 
             document.getElementById('days').textContent = days.toString().padStart(2, '0');
             document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
@@ -444,92 +443,72 @@
 
         // Atualiza o cronômetro imediatamente e depois a cada segundo
         updateCountdown();
-        setInterval(updateCountdown, 1000);
-    </script>
+        const countdownInterval = setInterval(updateCountdown, 1000);
 
-    <div id="modal-rsvp" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); backdrop-filter:blur(2px); z-index:9999; justify-content:center; align-items:center;">
-      <div style="background:#fff; padding:2rem; border-radius:12px; width:90%; max-width:400px; box-shadow:0 8px 30px rgba(0,0,0,0.2); position:relative;">
-        <button onclick="fecharModal()" style="position:absolute; top:10px; right:15px; background:none; border:none; font-size:20px; cursor:pointer;">×</button>
-        <h3 style="text-align:center; margin-bottom:1rem;">Confirme sua presença</h3>
-        <form id="rsvp-form" style="display:flex; flex-direction:column; gap:0.8rem;">
-          <select name="presenca" required>
-            <option value="">Você confirma presença?</option>
-            <option value="Sim">Sim</option>
-            <option value="Não">Não</option>
-          </select>
-          <input type="text" name="nome" placeholder="Nome completo" required>
-          <input type="email" name="email" placeholder="E-mail" required>
-          <input type="number" name="quantidade" placeholder="Número de pessoas" min="1" required>
-          <button type="submit" style="background:#a6c899; padding:0.6rem; border:none; border-radius:6px; cursor:pointer;">Enviar</button>
-          <div id="status" style="font-size:0.9rem; color:#67824d; display:none;"></div> </form>
-      </div>
-    </div>
+        // --- Funções do Modal de RSVP ---
+        const rsvpModal = document.getElementById("modal-rsvp");
+        const rsvpForm = document.getElementById("rsvp-form");
+        const statusMessage = document.getElementById("status-message");
 
-    <script>
-    function abrirModal() {
-      document.getElementById("modal-rsvp").style.display = "flex";
-      // Oculta a mensagem de status antiga ao abrir o modal
-      document.getElementById("status").style.display = "none"; 
-      document.getElementById("status").textContent = "";
-      document.getElementById("rsvp-form").reset(); // Limpa o formulário ao abrir
-    }
-
-    function fecharModal() {
-      document.getElementById("modal-rsvp").style.display = "none";
-    }
-
-    document.getElementById("rsvp-form").addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const form = e.target;
-      const status = document.getElementById("status");
-      status.textContent = "Enviando...";
-      status.style.display = "block"; // Mostra a mensagem de "Enviando..."
-
-      const data = {
-        presenca: form.presenca.value,
-        nome: form.nome.value,
-        email: form.email.value,
-        quantidade: parseInt(form.quantidade.value) // Garante que é um número inteiro
-      };
-
-      try {
-        // Esta é a URL que você OBTEVE ao IMPLANTAR seu Google Apps Script como Web App (termina em /exec)
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbyKT8E8m8fUwkVP9oOSjWCw3mF0WzEz5NjOyAWFCF6-fyHPqRdWrOqbiDtOg0EgwD056w/exec";
-
-        const response = await fetch(webAppUrl, {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: { "Content-Type": "application/json" }
-        });
-
-        const result = await response.json();
-
-        if (result.status === "success") {
-          status.style.backgroundColor = "#e6ffe6";
-          status.style.color = "#4CAF50";
-          status.style.borderColor = "#c2ecc2";
-          status.textContent = "Confirmação enviada com sucesso! Redirecionando...";
-          form.reset();
-          setTimeout(() => {
-            fecharModal();
-            status.textContent = ""; // Limpa a mensagem após fechar
-            status.style.display = "none"; // Oculta a mensagem
-          }, 2000); // Fecha o modal após 2 segundos
-        } else {
-          status.style.backgroundColor = "#ffe6e6";
-          status.style.color = "#F44336";
-          status.style.borderColor = "#ecc2c2";
-          status.textContent = "Erro ao enviar: " + (result.message || "Erro desconhecido.");
+        function openRsvpModal() {
+            rsvpModal.style.display = "flex";
+            rsvpForm.reset(); // Limpa o formulário ao abrir
+            statusMessage.textContent = "";
+            statusMessage.className = ""; // Limpa classes de sucesso/erro
+            statusMessage.style.display = "none"; // Oculta a mensagem
         }
-      } catch (err) {
-        status.style.backgroundColor = "#ffe6e6";
-        status.style.color = "#F44336";
-        status.style.borderColor = "#ecc2c2";
-        status.textContent = "Erro de conexão. Verifique sua internet ou tente novamente mais tarde.";
-        console.error("Erro de fetch:", err); // Loga o erro no console para depuração
-      }
-    });
-    </script>
 
+        function closeRsvpModal() {
+            rsvpModal.style.display = "none";
+        }
+
+        // Lidar com o envio do formulário RSVP
+        rsvpForm.addEventListener("submit", async function (e) {
+            e.preventDefault(); // Impede o envio padrão do formulário
+
+            statusMessage.textContent = "Enviando...";
+            statusMessage.className = ""; // Remove classes antigas
+            statusMessage.style.display = "block"; // Mostra a mensagem
+
+            const formData = new FormData(rsvpForm);
+            const data = Object.fromEntries(formData.entries());
+
+            // Converte quantidadePessoas para número inteiro
+            data.quantidadePessoas = parseInt(data.quantidadePessoas);
+
+            // IMPORTANTE: COLE A URL DO SEU WEB APP DO GOOGLE APPS SCRIPT AQUI!
+            // EX: const webAppUrl = "https://script.google.com/macros/s/SEU_ID_DO_SCRIPT/exec";
+            const webAppUrl = "https://script.google.com/macros/s/AKfycbxHznVRimASCEW_o1rWAZoS_QDYbXs2rNBXs7_6U2e6XhtmkuVaXuWCiVes4Zo5-T_5LA/exec"; // <-- SUBSTITUA ISSO AQUI
+
+            try {
+                const response = await fetch(webAppUrl, {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                const result = await response.json(); // Analisa a resposta JSON do Apps Script
+
+                if (result.status === "success") {
+                    statusMessage.textContent = result.message || "Confirmação enviada com sucesso!";
+                    statusMessage.classList.add("success");
+                    rsvpForm.reset(); // Limpa o formulário
+                    setTimeout(() => {
+                        closeRsvpModal();
+                    }, 2000); // Fecha o modal após 2 segundos
+                } else {
+                    statusMessage.textContent = result.message || "Erro ao enviar a confirmação. Tente novamente.";
+                    statusMessage.classList.add("error");
+                    console.error("Erro do Apps Script:", result.message);
+                }
+            } catch (error) {
+                statusMessage.textContent = "Erro de conexão. Verifique sua internet ou tente novamente.";
+                statusMessage.classList.add("error");
+                console.error("Erro no fetch:", error);
+            }
+        });
+    </script>
 </body>
 </html>
