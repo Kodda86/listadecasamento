@@ -12,20 +12,16 @@
       padding: 0;
     }
 
-    html, body {
-      height: 100%;
+    body {
       font-family: 'Cormorant Garamond', serif;
       background: #f9faf7;
       color: #333;
-      overflow-x: hidden;
-    }
-
-    body {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 1rem;
+      min-height: 100vh;
       position: relative;
+      padding: 2rem;
     }
 
     body::before {
@@ -39,56 +35,51 @@
       pointer-events: none;
     }
 
-    .container {
+    .card {
+      background: rgba(255,255,255,0.97);
+      border-radius: 22px;
+      box-shadow: 0 6px 48px #a5b59423, 0 1.5px 0.5px #ece5d9;
+      border: 1.5px solid #e2dec9;
       width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
+      max-width: 460px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
     }
 
-   .card {
-    background: rgba(255,255,255,0.97);
-    border-radius: 22px;
-    box-shadow: 0 6px 48px #a5b59423, 0 1.5px 0.5px #ece5d9;
-    border: 1.5px solid #e2dec9;
-    padding: 1.5rem 1.5rem 2rem; /* Reduziu padding superior */
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
+    .header {
+      padding: 2rem 1.5rem 1rem;
+    }
 
-  .header {
-    margin-bottom: 1.2rem;
-  }
-
-  .header h1 {
-    font-size: 2.4rem;
-    margin-bottom: 0.1rem;
-  }
-
-  .header h2 {
-    margin-bottom: 0.3rem;
-  }
-
-  @media (max-width: 600px) {
     .header h1 {
-      font-size: 2.0rem;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.6rem;
+      color: #67824d;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: 0.5px;
     }
-    
+
     .header h2 {
-      font-size: 0.95rem;
+      font-size: 1.15rem;
+      color: #8c7c4f;
+      font-weight: 600;
+      margin: 0 0 1.5rem 0;
     }
-    
+
     .date {
-      font-size: 0.85rem;
+      color: #a09875;
+      font-size: 1.05rem;
+      margin-bottom: 2.5rem;
     }
 
     .photo-section {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .photo-frame {
       background: #f6f7f4;
-      padding: 0.5rem;
+      padding: 0.75rem;
       border-radius: 50%;
       border: 2.5px solid #c7c1a1;
       box-shadow: 0 0 0 12px #e6e3d86e, 0 4px 16px #b5c9a229;
@@ -97,49 +88,43 @@
     }
 
     .photo-section img {
-      width: 150px;
-      height: 150px;
+      width: 160px;
+      height: 160px;
       object-fit: cover;
       border-radius: 50%;
       display: block;
       transition: transform 0.3s ease;
     }
 
-    .photo-section:hover .photo-frame {
-      transform: scale(1.05);
-    }
-
+    .photo-section:hover .photo-frame,
     .photo-section:hover img {
       transform: scale(1.05);
     }
 
     .countdown-container {
-      margin-bottom: 1.5rem;
-      padding: 0 0.5rem;
+      margin-bottom: 2rem;
     }
 
     .countdown-title {
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: #708950;
-      margin-bottom: 0.7rem;
+      margin-bottom: 1.2rem;
       font-weight: 600;
     }
 
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 0.8rem;
-      flex-wrap: wrap;
+      gap: 1.2rem;
     }
 
     .countdown-item {
       text-align: center;
       background: #f7f8f3e6;
-      padding: 0.6rem 0.8rem;
-      border-radius: 6px;
-      border-left: 3px solid #a0b088;
-      min-width: 40px;
-      flex: 1 1 40px;
+      padding: 1.2rem 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #a0b088;
+      flex: 1 1 120px;
       transition: transform 0.2s ease;
     }
 
@@ -148,14 +133,14 @@
     }
 
     .countdown-item span {
-      font-size: 1.3rem;
+      font-size: 1.8rem;
       font-weight: 600;
       color: #67824d;
       display: block;
     }
 
     .countdown-item small {
-      font-size: 0.6rem;
+      font-size: 0.8rem;
       color: #8c7c4f;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -165,15 +150,15 @@
       background: #f7f8f3e6;
       border-left: 4px solid #a0b088;
       border-radius: 8px;
-      padding: 1rem 1.2rem;
-      font-size: 0.95rem;
-      margin: 1rem 0;
+      padding: 1.5rem 2rem;
+      font-size: 0.98rem;
+      margin: 1.5rem 0;
     }
 
     .list-title {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: #708950;
-      margin: 1.5rem 0 1rem;
+      margin: 2rem 0 1rem;
       font-weight: 600;
     }
 
@@ -181,22 +166,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.7rem;
+      gap: 0.9rem;
       background: linear-gradient(90deg, #a6c899 0%, #eae8d7 100%);
       color: #41572a;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 600;
       font-size: 1.05rem;
-      padding: 0.8rem 0;
+      padding: 0.9rem 1.8rem;
       border: 1px solid #d1cdbe;
       border-radius: 6px;
       text-decoration: none;
       box-shadow: 0 2px 13px #e1e8d7;
       transition: all 0.2s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      margin-bottom: 0.6rem;
+      margin: 0.6rem auto;
+      max-width: 80%;
     }
 
     .gift-btn:hover {
@@ -206,84 +189,20 @@
     }
 
     .footer {
-      margin-top: 1.5rem;
+      margin-top: 1.8rem;
       color: #8c7c4f;
       font-size: 0.95rem;
       letter-spacing: 0.18px;
-    }
-
-    /* Modal */
-    #modal-rsvp {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(3px);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #modal-rsvp > div {
-      background: #fff;
-      padding: 0;
-      border-radius: 16px;
-      width: 95%;
-      max-width: 660px;
-      height: 90%;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    #modal-rsvp button.close-btn {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-      color: #41572a;
-      z-index: 2;
-    }
-
-    #modal-rsvp h3 {
-      text-align: center;
-      margin: 1.2rem 0 0.5rem;
-      color: #67824d;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: 1.6rem;
-    }
-
-    iframe {
-      flex: 1;
-      border: none;
+      padding: 1.5rem;
     }
 
     @media (max-width: 600px) {
-      .photo-section img {
-        width: 120px;
-        height: 120px;
-      }
-      
-      .countdown-item span {
-        font-size: 1.1rem;
-      }
-      
-      .countdown-item small {
-        font-size: 0.55rem;
+      .card {
+        padding: 1.5rem;
       }
       
       .header h1 {
-        font-size: 2.1rem;
+        font-size: 2.2rem;
       }
       
       .header h2 {
@@ -293,64 +212,62 @@
       .date {
         font-size: 0.9rem;
       }
+      
+      .photo-section img {
+        width: 140px;
+        height: 140px;
+      }
+      
+      .countdown-item span {
+        font-size: 1.5rem;
+      }
+      
+      .countdown-item small {
+        font-size: 0.7rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <div class="header">
-        <h1>Juliana & Eduardo</h1>
-        <h2>Nosso casamento</h2>
-        <div class="date">04 de Outubro de 2025</div>
-      </div>
+  <div class="card">
+    <div class="header">
+      <h1>Juliana & Eduardo</h1>
+      <h2>Nosso casamento</h2>
+      <div class="date">04 de Outubro de 2025</div>
+    </div>
 
-      <div class="photo-section">
-        <span class="photo-frame">
-          <img src="https://koddanet.wordpress.com/wp-content/uploads/2025/07/jee-1.jpg " alt="Juliana e Eduardo">
-        </span>
-      </div>
+    <div class="photo-section">
+      <span class="photo-frame">
+        <img src="https://koddanet.wordpress.com/wp-content/uploads/2025/07/jee-1.jpg " alt="Juliana e Eduardo">
+      </span>
+    </div>
 
-      <div class="countdown-container">
-        <div class="countdown-title">Faltam</div>
-        <div id="countdown" class="countdown">
-          <div class="countdown-item"><span id="days">00</span><small>Dias</small></div>
-          <div class="countdown-item"><span id="hours">00</span><small>Horas</small></div>
-          <div class="countdown-item"><span id="minutes">00</span><small>Minutos</small></div>
-          <div class="countdown-item"><span id="seconds">00</span><small>Segundos</small></div>
-        </div>
-      </div>
-
-      <div class="info-box">
-        Com muita alegria, convidamos você para fazer parte deste momento tão especial em nossas vidas.<br><br>
-        Caso queira nos presentear, deixamos aqui as opções das listas de casamento nas lojas parceiras.
-      </div>
-
-      <div class="list-title">Confirme sua presença:</div>
-      <button class="gift-btn" onclick="openRsvpModal()">✅ Confirmar Presença</button>
-
-      <div class="list-title">Acesse nossa lista em sua loja favorita:</div>
-      <div class="gift-list">
-        <a class="gift-btn" href="https://www.precolandia.com.br/gift-list-details/view/duda-e-ju " target="_blank">Preçolândia</a>
-        <a class="gift-btn" href="#" onclick="handleExternalLink('Zelo')">Zelo</a>
-        <a class="gift-btn" href="#" onclick="handleExternalLink('Casas Bahia')">Casas Bahia</a>
-        <a class="gift-btn" href="https://www.querodecasamento.com.br/lista-de-casamento/EduardoDudaeJuliana " target="_blank">Quero de Casamento</a>
-      </div>
-
-      <div class="footer">
-        Obrigado por fazer parte da nossa história!<br>
-        Juliana & Eduardo
+    <div class="countdown-container">
+      <div class="countdown-title">Faltam</div>
+      <div id="countdown" class="countdown">
+        <div class="countdown-item"><span id="days">00</span><small>Dias</small></div>
+        <div class="countdown-item"><span id="hours">00</span><small>Horas</small></div>
+        <div class="countdown-item"><span id="minutes">00</span><small>Minutos</small></div>
+        <div class="countdown-item"><span id="seconds">00</span><small>Segundos</small></div>
       </div>
     </div>
-  </div>
 
-  <!-- Modal com Google Forms -->
-  <div id="modal-rsvp">
-    <div>
-      <button class="close-btn" onclick="closeRsvpModal()">×</button>
-      <h3>Confirme sua presença</h3>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSebXvU6Bi7qZj1IN3MppbDICIQHWHlxl0-teY3P7fdnhos5Hg/viewform?embedded=true"
-              width="100%" height="100%">Carregando…</iframe>
+    <div class="info-box">
+      Com muita alegria, convidamos você para fazer parte deste momento tão especial em nossas vidas.<br><br>
+      Caso queira nos presentear, deixamos aqui as opções das listas de casamento nas lojas parceiras.
+    </div>
+
+    <div class="list-title">Acesse nossa lista em sua loja favorita:</div>
+    <div class="gift-list">
+      <a class="gift-btn" href="https://www.precolandia.com.br/gift-list-details/view/duda-e-ju " target="_blank">Preçolândia</a>
+      <a class="gift-btn" href="#" onclick="handleExternalLink('Zelo')">Zelo</a>
+      <a class="gift-btn" href="#" onclick="handleExternalLink('Casas Bahia')">Casas Bahia</a>
+      <a class="gift-btn" href="https://www.querodecasamento.com.br/lista-de-casamento/EduardoDudaeJuliana " target="_blank">Quero de Casamento</a>
+    </div>
+
+    <div class="footer">
+      Obrigado por fazer parte da nossa história!<br>
+      Juliana & Eduardo
     </div>
   </div>
 
@@ -380,14 +297,6 @@
 
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
-
-    function openRsvpModal() {
-      document.getElementById("modal-rsvp").style.display = "flex";
-    }
-
-    function closeRsvpModal() {
-      document.getElementById("modal-rsvp").style.display = "none";
-    }
 
     function handleExternalLink(storeName) {
       alert(`Desculpe, o link para ${storeName} está temporariamente indisponível. Por favor, tente novamente mais tarde ou entre em contato conosco para obter mais informações.`);
